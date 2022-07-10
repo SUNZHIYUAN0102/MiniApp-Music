@@ -1,0 +1,9 @@
+<!--pages/index/index.wxml-->
+<view class="indexContainer">
+    <image class="avatarUrl" src="/static/images/avatar.jpg"></image>
+    <text class="username">帅气的小远远</text>
+
+    <view bindtap="handleParent" class="goStudy">
+        <text catchtap="handleChild">{{msg}}</text>
+    </view>
+</view>
