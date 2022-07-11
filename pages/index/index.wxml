@@ -1,9 +1,66 @@
 <!--pages/index/index.wxml-->
 <view class="indexContainer">
-    <image class="avatarUrl" src="/static/images/avatar.jpg"></image>
-    <text class="username">帅气的小远远</text>
+    <swiper indicator-dots="true" indicator-color="ivory" indicator-active-color="#d43c33" class="banners" interval="1000" circular autoplay>
+        <swiper-item>
+            <image src="/static/images/avatar.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="/static/images/avatar.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="/static/images/avatar.jpg"></image>
+        </swiper-item>
+    </swiper>
 
-    <view bindtap="handleParent" class="goStudy">
-        <text catchtap="handleChild">{{msg}}</text>
+    <view class="navContainer">
+        <view class="navItem">
+            <text class="iconfont .icon-paixu"></text>
+            <text>每日推荐</text>
+        </view>
+        <view class="navItem">
+            <text class="iconfont .icon-bianji"></text>
+            <text>歌单</text>
+        </view>
+        <view class="navItem">
+            <text class="iconfont .icon-fenxiang"></text>
+            <text>排行榜</text>
+        </view>
+        <view class="navItem">
+            <text class="iconfont .icon-right"></text>
+            <text>电台</text>
+        </view>
+        <view class="navItem">
+            <text class="iconfont .icon-suoding"></text>
+            <text>直播</text>
+        </view>
+    </view>
+
+    <view class="recommendContainer">
+        <view class="header">
+            <text class="title">推荐歌曲</text>
+            <view>
+                <text>为你精心推荐</text>
+                <text class="more">查看更多</text>
+            </view>
+        </view>
+
+        <scroll-view scroll-x enable-flex class="recommendScroll">
+            <view class="scrollItem">
+                <image src="/static/images/avatar.jpg"></image>
+                <text>帅气的小远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/avatar.jpg"></image>
+                <text>帅气的小远远远远远远远</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/avatar.jpg"></image>
+                <text>帅气的小远远远远远远远</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/avatar.jpg"></image>
+                <text>帅气的小远远远远远远远</text>
+            </view>
+        </scroll-view>
     </view>
 </view>

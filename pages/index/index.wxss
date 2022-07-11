@@ -1,30 +1,82 @@
 /* pages/index/index.wxss */
-.indexContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: aqua;
+.banners {
+    width: 100%;
+    height: 300rpx;
+}
+
+.banners image {
+    width: 100%;
     height: 100%;
 }
 
-.avatarUrl {
-    width: 128rpx;
-    height: 128rpx;
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.iconfont {
+    width: 100rpx;
+    height: 100rpx;
     border-radius: 50%;
-    margin: 64rpx 0;
-}
-
-.username {
-    font-size: 32rpx;
-    margin: 64rpx 0;
-}
-
-.goStudy {
-    width: 300rpx;
-    height: 80rpx;
     text-align: center;
-    font-size: 28rpx;
-    border: 1rpx solid #333;
-    border-radius: 10rpx;
+    line-height: 100rpx;
+    background-color: rgb(240, 19, 19);
+    color: white;
+    font-size: 50rpx;
+    margin: 20rpx 0;
+}
+
+.navItem text:last-child {
+    font-size: 26rpx;
+}
+
+.recommendContainer {
+    padding: 20rpx;
+}
+
+.recommendContainer .header .title {
+    font-size: 32rpx;
     line-height: 80rpx;
+    color: #666;
+}
+
+.recommendContainer .header .more {
+    float: right;
+    border: 1rpx solid #333;
+    padding: 10rpx 20rpx;
+    font-size: 24rpx;
+    line-height: 24rpx;
+    border-radius: 30rpx;
+}
+
+.recommendScroll{
+    display: flex;
+    justify-content: space-between;
+}
+
+.scrollItem{
+    width: 200rpx;
+    margin-right:20rpx;
+}
+
+.scrollItem image{
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 10rpx;
+}
+
+.scrollItem text{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 26rpx;
+    text-overflow: ellipsis;
 }

@@ -5,50 +5,42 @@ Page({
      * 页面的初始数据
      */
     data: {
-        msg: '监听页面加载'
-    },
 
-    handleChild(){
-        console.log('child');
-    },
-
-    handleParent(){
-        console.log('parent');
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        setTimeout(() => {
-            this.setData({
-                msg: 'Moew'
-            })
-        }, 1000)
+
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
+
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
+
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
+
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
+
     },
 
     /**

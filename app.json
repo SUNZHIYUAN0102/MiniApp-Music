@@ -4,8 +4,8 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#f0f",
-        "navigationBarTitleText": "Music",
+        "navigationBarBackgroundColor": "#d43c33",
+        "navigationBarTitleText": "喵喵音乐",
         "navigationBarTextStyle": "white"
     },
     "style": "v2",
