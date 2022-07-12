@@ -1,18 +1,52 @@
 // pages/index/index.js
+import request from "../../utils/request"
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        bannerList: [],
+        recommendList: [],
+        topList: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
+    async onLoad(options) {
+        request("banner").then(data => {
+            this.setData({
+                bannerList: data.banners
+            })
+        })
 
+        request("personalized", "GET", {
+            limit: 10
+        }).then(data => {
+            this.setData({
+                recommendList: data.result
+            })
+        })
+
+
+        request("toplist").then(data => {
+            var resultArr = []
+            for (let i = 0; i < 5; i++) {
+                request("playlist/detail", "GET", {
+                    id: data.list[i].id
+                }).then(res => {
+                    resultArr.push({
+                        name: data.list[i].name,
+                        tracks: res.playlist.tracks.slice(0, 3)
+                    })
+
+                    this.setData({
+                        topList: resultArr
+                    })
+                })
+            }       
+        })
     },
 
     /**

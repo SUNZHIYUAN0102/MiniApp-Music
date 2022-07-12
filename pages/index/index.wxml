@@ -1,14 +1,8 @@
 <!--pages/index/index.wxml-->
 <view class="indexContainer">
     <swiper indicator-dots="true" indicator-color="ivory" indicator-active-color="#d43c33" class="banners" interval="1000" circular autoplay>
-        <swiper-item>
-            <image src="/static/images/avatar.jpg"></image>
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/avatar.jpg"></image>
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/avatar.jpg"></image>
+        <swiper-item wx:for="{{bannerList}}" wx:key="targetId">
+            <image src="{{item.imageUrl}}"></image>
         </swiper-item>
     </swiper>
 
@@ -36,31 +30,28 @@
     </view>
 
     <view class="recommendContainer">
-        <view class="header">
-            <text class="title">推荐歌曲</text>
-            <view>
-                <text>为你精心推荐</text>
-                <text class="more">查看更多</text>
-            </view>
-        </view>
-
+        <nav-header title="推荐歌曲" nav="为你精心推荐"></nav-header>
         <scroll-view scroll-x enable-flex class="recommendScroll">
-            <view class="scrollItem">
-                <image src="/static/images/avatar.jpg"></image>
-                <text>帅气的小远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远远</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/avatar.jpg"></image>
-                <text>帅气的小远远远远远远远</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/avatar.jpg"></image>
-                <text>帅气的小远远远远远远远</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/avatar.jpg"></image>
-                <text>帅气的小远远远远远远远</text>
+            <view wx:for="{{recommendList}}" wx:key="id" class="scrollItem">
+                <image src="{{item.picUrl}}"></image>
+                <text>{{item.name}}</text>
             </view>
         </scroll-view>
+    </view>
+
+    <view class="topList">
+        <nav-header title="排行榜" nav="热歌风向标"></nav-header>
+        <swiper class="topListSwiper" next-margin="50rpx">
+            <swiper-item wx:for="{{topList}}" wx:key="index">
+                <view class="swiper-item">
+                    <view class="title">{{item.name}}</view>
+                    <view wx:for="{{item.tracks}}" wx:for-item="musicItem" wx:for-index="musicIndex" wx:key="name" class="musicItem">
+                        <image src="{{musicItem.al.picUrl}}"></image>
+                        <text class="count">{{musicIndex + 1}}</text>
+                        <text class="musicName">{{musicItem.name}}</text>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
     </view>
 </view>
