@@ -1,10 +1,67 @@
 // pages/login/login.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        phone: '',
+        password: ''
+    },
+
+    login() {
+        var {
+            phone,
+            password
+        } = this.data;
+
+        if (!phone) {
+            wx.showToast({
+                title: '手机号码不能为空',
+                icon: 'none'
+            })
+            return;
+        }
+
+        var phoneReg = /^1[3-9]\d{9}$/
+        if (!phoneReg.test(phone)) {
+            wx.showToast({
+                title: '请输入正确的手机格式',
+                icon: 'none'
+            })
+            return;
+        }
+
+        if (!password) {
+            wx.showToast({
+                title: '密码不能为空',
+                icon: 'none'
+            })
+            return;
+        }
+
+        request('login/cellphone', 'GET', {
+            phone,
+            password
+        }).then(data => {
+            if (data.code === 200) {
+                wx.setStorageSync('userInfo', JSON.stringify(data.profile))
+                wx.reLaunch({
+                  url: '/pages/personal/personal',
+                })
+            } else if (data.code === 501) {
+                wx.showToast({
+                    title: '账号或密码错误',
+                    icon: 'none'
+                })
+            } else {
+                wx.showToast({
+                    title: '登录失败，请重新登录',
+                    icon: 'none'
+                })
+            }
+        })
 
     },
 

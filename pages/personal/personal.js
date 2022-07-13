@@ -9,7 +9,8 @@ Page({
      */
     data: {
         coverTransform: 'translateY(0)',
-        coverTransition: ''
+        coverTransition: '',
+        userInfo:{}
     },
 
     handleTouchStart(e) {
@@ -36,11 +37,22 @@ Page({
         })
     },
 
+    goLoginPage() {
+        wx.navigateTo({
+            url: '/pages/login/login',
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+        if(userInfo){
+            this.setData({
+                userInfo: userInfo
+            })
+        }
     },
 
     /**
@@ -54,7 +66,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
     },
 
     /**
