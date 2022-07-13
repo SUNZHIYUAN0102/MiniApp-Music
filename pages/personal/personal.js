@@ -1,23 +1,39 @@
 // pages/personal/personal.js
+let startY = 0;
+let moveY = 0;
+let moveDistance = 0;
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        coverTransform: 'translateY(0)',
+        coverTransition: ''
     },
 
-    handleTouchStart(){
-        console.log('start');
+    handleTouchStart(e) {
+        this.setData({
+            coverTransition: ""
+        })
+        startY = e.touches[0].clientY;
     },
 
-    handleTouchMove(){
-        console.log('start1');
+    handleTouchMove(e) {
+        moveY = e.touches[0].clientY;
+        moveDistance = moveY - startY;
+        if (moveDistance <= 0) return;
+        if (moveDistance >= 80) moveDistance = 80;
+        this.setData({
+            coverTransform: `translateY(${moveDistance}rpx)`
+        })
     },
 
-    handleTouchEnd(){
-        console.log('start2');
+    handleTouchEnd() {
+        this.setData({
+            coverTransform: "translateY(0rpx)",
+            coverTransition: "transform 1s linear"
+        })
     },
 
     /**

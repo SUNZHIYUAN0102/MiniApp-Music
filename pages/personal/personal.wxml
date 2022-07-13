@@ -24,8 +24,7 @@
         </view>
     </view>
 
-
-    <view class="cover-container" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd">
+    <view class="cover-container" bindtouchstart="handleTouchStart" bindtouchmove="handleTouchMove" bindtouchend="handleTouchEnd" style="transform: {{coverTransform}}; transition: {{coverTransition}};">
         <image class="arc" src="/static/images/personal/arc.png"></image>
         <view class="nav-section">
             <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
