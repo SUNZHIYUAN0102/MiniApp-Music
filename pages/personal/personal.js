@@ -2,6 +2,7 @@
 let startY = 0;
 let moveY = 0;
 let moveDistance = 0;
+import request from '../../utils/request'
 Page({
 
     /**
@@ -10,7 +11,8 @@ Page({
     data: {
         coverTransform: 'translateY(0)',
         coverTransition: '',
-        userInfo:{}
+        userInfo: {},
+        recentPlayList: []
     },
 
     handleTouchStart(e) {
@@ -48,9 +50,17 @@ Page({
      */
     onLoad(options) {
         var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-        if(userInfo){
+        if (userInfo) {
             this.setData({
                 userInfo: userInfo
+            })
+            request("user/record", "GET", {
+                uid: userInfo.userId,
+                type: 0
+            }).then(data => {
+                this.setData({
+                    recentPlayList: data.allData.slice(0, 10)
+                })
             })
         }
     },
@@ -65,8 +75,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow() {
-    },
+    onShow() {},
 
     /**
      * 生命周期函数--监听页面隐藏
