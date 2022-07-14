@@ -1,1 +1,37 @@
 /* pages/video/video.wxss */
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10rpx;
+}
+
+.header .search{
+    border: 1rpx solid #eee;
+    flex: 1;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    color: #d43c33;
+}
+
+.header image{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.navScroll{
+    display: flex;
+    white-space: nowrap;
+}
+
+.navItem{
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.active{
+    border-bottom: 1rpx solid #d43c33;
+}
