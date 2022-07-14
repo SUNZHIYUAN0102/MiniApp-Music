@@ -43,12 +43,14 @@ Page({
 
         request('login/cellphone', 'GET', {
             phone,
-            password
+            password,
+            isLogin: true
         }).then(data => {
             if (data.code === 200) {
+                console.log(data);
                 wx.setStorageSync('userInfo', JSON.stringify(data.profile))
                 wx.reLaunch({
-                  url: '/pages/personal/personal',
+                    url: '/pages/personal/personal',
                 })
             } else if (data.code === 501) {
                 wx.showToast({
@@ -62,7 +64,6 @@ Page({
                 })
             }
         })
-
     },
 
     /**

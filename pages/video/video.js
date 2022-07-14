@@ -1,18 +1,41 @@
 // pages/video/video.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        videoGroupList: [],
+        navId: ''
+    },
 
+    changeNav(e) {
+        this.setData({
+            navId: e.target.id >>> 0
+        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        request("video/group/list").then(data => {
+            this.setData({
+                videoGroupList: data.data.slice(0, 14),
+                navId: data.data[0].id
+            })
+        }).then(() => {
+            this.getVideoList()
+        })
+    },
 
+    getVideoList() {
+        request("video/group", "GET", {
+            id: this.data.navId
+        }).then(data => {
+            console.log(data);
+        })
     },
 
     /**
