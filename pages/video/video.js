@@ -7,7 +7,8 @@ Page({
      */
     data: {
         videoGroupList: [],
-        navId: ''
+        navId: '',
+        videoList: []
     },
 
     changeNav(e) {
@@ -34,7 +35,9 @@ Page({
         request("video/group", "GET", {
             id: this.data.navId
         }).then(data => {
-            console.log(data);
+            this.setData({
+                videoList: data.datas
+            })
         })
     },
 
