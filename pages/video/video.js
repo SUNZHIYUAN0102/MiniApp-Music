@@ -38,13 +38,26 @@ Page({
             title: '正在请求数据',
             icon: 'loading'
         })
+        var currList = []
         request("video/group", "GET", {
             id: this.data.navId
         }).then(data => {
-            this.setData({
-                videoList: data.datas
+            currList = data.datas
+
+            // this.setData({
+            //     videoList: data.datas
+            // })
+        }).then(() => {
+            currList.forEach(item => {
+                request("video/url", "GET", {
+                    id: item.data.vid
+                }).then(res => {
+                    item.data.videoUrl = res.urls[0].url
+                    this.setData({
+                        videoList: currList
+                    })
+                })
             })
-            wx.hideToast();
         })
     },
 
