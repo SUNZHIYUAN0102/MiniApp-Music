@@ -15,6 +15,8 @@ Page({
         this.setData({
             navId: e.target.id >>> 0
         })
+
+        this.getVideoList();
     },
 
     /**
@@ -32,12 +34,17 @@ Page({
     },
 
     getVideoList() {
+        wx.showToast({
+            title: '正在请求数据',
+            icon: 'loading'
+        })
         request("video/group", "GET", {
             id: this.data.navId
         }).then(data => {
             this.setData({
                 videoList: data.datas
             })
+            wx.hideToast();
         })
     },
 
