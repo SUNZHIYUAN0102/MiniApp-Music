@@ -9,7 +9,8 @@ Page({
         videoGroupList: [],
         navId: '',
         videoList: [],
-        videoId:''
+        videoId: '',
+        videoPlayedLists: []
     },
 
     changeNav(e) {
@@ -65,6 +66,39 @@ Page({
         this.videoContext = wx.createVideoContext(e.target.id)
         this.setData({
             videoId: e.target.id
+        })
+        var videoIndex = this.data.videoPlayedLists.findIndex(item => item.vid === e.target.id)
+        if (videoIndex >= 0) {
+            this.videoContext.seek(this.data.videoPlayedLists[videoIndex].currentTime);
+        }
+    },
+
+    handleTimeUpdate(e) {
+        var videoTimeObj = {
+            vid: e.target.id,
+            currentTime: e.detail.currentTime
+        }
+
+        var {
+            videoPlayedLists
+        } = this.data;
+
+        var videoIndex = videoPlayedLists.findIndex(item =>
+            item.vid == e.target.id
+        )
+
+        if (videoIndex >= 0) {
+            if(videoPlayedLists[videoIndex].currentTime == e.detail.currentTime){
+                videoPlayedLists.splice(videoIndex, 1)
+            }else{
+                videoPlayedLists[videoIndex].currentTime = e.detail.currentTime
+            }
+        } else {
+            videoPlayedLists.push(videoTimeObj);
+        }
+
+        this.setData({
+            videoPlayedLists
         })
     },
 
