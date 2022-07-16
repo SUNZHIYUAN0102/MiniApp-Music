@@ -10,7 +10,10 @@ Page({
         navId: '',
         videoList: [],
         videoId: '',
-        videoPlayedLists: []
+        videoPlayedLists: [],
+        isTriggered: false,
+        offset: 0,
+        isLoading: false
     },
 
     changeNav(e) {
@@ -30,31 +33,88 @@ Page({
                 videoGroupList: data.data.slice(0, 14),
                 navId: data.data[0].id
             })
-        }).then(() => {
-            this.getVideoList()
+        }).then(()=>{
+            this.getVideoListRefresh()
         })
     },
 
-    getVideoList() {
+    getVideoListRefresh: async function () {
         wx.showToast({
             title: '正在请求数据',
             icon: 'loading'
         })
         var currList = []
-        request("video/group", "GET", {
-            id: this.data.navId
-        }).then(data => {
-            currList = data.datas
-            currList.forEach(item => {
-                request("video/url", "GET", {
-                    id: item.data.vid
-                }).then(res => {
-                    item.data.videoUrl = res.urls[0].url
-                    this.setData({
-                        videoList: currList
-                    })
-                })
+        // request("video/group", "GET", {
+        //     id: this.data.navId,
+        //     offset: this.data.offset
+        // }).then(data => {
+        //     currList = data.datas
+        //     currList.forEach(item => {
+        //         request("video/url", "GET", {
+        //             id: item.data.vid
+        //         }).then(res => {
+        //             item.data.videoUrl = res.urls[0].url
+        //             this.setData({
+        //                 videoList: [...this.data.videoList, ...currList],
+        //                 isTriggered: true
+        //             })
+        //         })
+        //     })
+        // })
+
+        this.setData({
+            isLoading: true
+        })
+
+        var data = await request("video/group", "GET", {
+            id: this.data.navId,
+            offset: this.data.offset
+        })
+
+        currList = data.datas
+
+        currList.forEach(async (item) => {
+            var res = await request("video/url", "GET", {
+                id: item.data.vid
             })
+            item.data.videoUrl = res.urls[0].url
+        })
+
+        this.setData({
+            videoList: currList,
+            isTriggered: true,
+            isLoading: false
+        })
+    },
+
+    getVideoListScroll: async function () {
+        wx.showToast({
+            title: '正在请求数据',
+            icon: 'loading'
+        })
+        var currList = []
+
+        this.setData({
+            isLoading: true
+        })
+
+        var data = await request("video/group", "GET", {
+            id: this.data.navId,
+            offset: this.data.offset
+        })
+
+        currList = data.datas
+
+        currList.forEach(async (item) => {
+            var res = await request("video/url", "GET", {
+                id: item.data.vid
+            })
+            item.data.videoUrl = res.urls[0].url
+        })
+
+        this.setData({
+            videoList: [...this.data.videoList, ...currList],
+            isLoading: false
         })
     },
 
@@ -88,9 +148,9 @@ Page({
         )
 
         if (videoIndex >= 0) {
-            if(videoPlayedLists[videoIndex].currentTime == e.detail.currentTime){
+            if (videoPlayedLists[videoIndex].currentTime == e.detail.currentTime) {
                 videoPlayedLists.splice(videoIndex, 1)
-            }else{
+            } else {
                 videoPlayedLists[videoIndex].currentTime = e.detail.currentTime
             }
         } else {
@@ -100,6 +160,22 @@ Page({
         this.setData({
             videoPlayedLists
         })
+    },
+
+    handleRefresher() {
+        this.setData({
+            isTriggered: false,
+        })
+        this.getVideoListRefresh()
+    },
+
+    handleToLower() {
+        if (this.data.isLoading) return
+
+        this.setData({
+            offset: ++this.data.offset
+        })
+        this.getVideoListScroll()
     },
 
     /**
