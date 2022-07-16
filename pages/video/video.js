@@ -43,11 +43,6 @@ Page({
             id: this.data.navId
         }).then(data => {
             currList = data.datas
-
-            // this.setData({
-            //     videoList: data.datas
-            // })
-        }).then(() => {
             currList.forEach(item => {
                 request("video/url", "GET", {
                     id: item.data.vid
@@ -59,6 +54,14 @@ Page({
                 })
             })
         })
+    },
+
+    handlePlay(e) {
+        this.videoContext;
+        this.vid;
+        if (this.videoContext && this.vid && this.vid !== e.target.id) this.videoContext.stop();
+        this.vid = e.target.id;
+        this.videoContext = wx.createVideoContext(e.target.id)
     },
 
     /**
