@@ -8,7 +8,8 @@ Page({
     data: {
         videoGroupList: [],
         navId: '',
-        videoList: []
+        videoList: [],
+        videoId:''
     },
 
     changeNav(e) {
@@ -57,11 +58,14 @@ Page({
     },
 
     handlePlay(e) {
-        this.videoContext;
-        this.vid;
-        if (this.videoContext && this.vid && this.vid !== e.target.id) this.videoContext.stop();
-        this.vid = e.target.id;
+        // this.videoContext;
+        // this.vid;
+        // if (this.videoContext && this.vid !== e.target.id) this.videoContext.stop();
+        // this.vid = e.target.id;
         this.videoContext = wx.createVideoContext(e.target.id)
+        this.setData({
+            videoId: e.target.id
+        })
     },
 
     /**
