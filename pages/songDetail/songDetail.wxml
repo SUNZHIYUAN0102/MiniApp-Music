@@ -1,0 +1,20 @@
+<!--pages/songDetail/songDetail.wxml-->
+<view class="songDetailContainer">
+    <view class="author">
+        meow
+    </view>
+    <view class="circle"></view>
+    <image class="needle {{isPlay?'needleRotate':''}}" src="/static/images/song/needle.png"></image>
+    <view class="discContainer">
+        <image class="disc" src="/static/images/song/disc.png"></image>
+        <image class="musicImg {{isPlay?'discAnimation':''}}" src="/static/images/avatar.jpg"></image>
+    </view>
+
+    <view class="musicControl">
+        <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
+        <text class="iconfont icon-shangyishou"></text>
+        <text class="iconfont {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-next"></text>
+        <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+    </view>
+</view>
