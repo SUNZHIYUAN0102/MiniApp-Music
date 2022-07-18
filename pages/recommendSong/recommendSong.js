@@ -1,4 +1,5 @@
 // pages/recommendSong/recommendSong.js
+import request from "../../utils/request"
 Page({
 
     /**
@@ -6,7 +7,8 @@ Page({
      */
     data: {
         day: '',
-        month: ''
+        month: '',
+        recommendSongs: []
     },
 
     /**
@@ -16,6 +18,13 @@ Page({
         this.setData({
             day: new Date().getDate(),
             month: new Date().getMonth() + 1
+        })
+
+        request("recommend/songs").then(({data})=>{
+            console.log(data);
+            this.setData({
+                recommendSongs: data.dailySongs
+            })
         })
     },
 
