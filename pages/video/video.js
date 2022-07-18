@@ -21,7 +21,7 @@ Page({
             navId: e.target.id >>> 0
         })
 
-        this.getVideoList();
+        this.getVideoListRefresh();
     },
 
     /**
@@ -33,7 +33,7 @@ Page({
                 videoGroupList: data.data.slice(0, 14),
                 navId: data.data[0].id
             })
-        }).then(()=>{
+        }).then(() => {
             this.getVideoListRefresh()
         })
     },
@@ -62,13 +62,8 @@ Page({
         //     })
         // })
 
-        this.setData({
-            isLoading: true
-        })
-
         var data = await request("video/group", "GET", {
             id: this.data.navId,
-            offset: this.data.offset
         })
 
         currList = data.datas
@@ -83,7 +78,6 @@ Page({
         this.setData({
             videoList: currList,
             isTriggered: true,
-            isLoading: false
         })
     },
 
@@ -223,7 +217,11 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage() {
-
+    onShareAppMessage(obj) {
+        return {
+            title: '喵喵音乐——分享',
+            path: '/pages/video/video',
+            imageUrl: obj.target.dataset.imageurl
+        }
     }
 })

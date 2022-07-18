@@ -28,19 +28,19 @@
         <image class="arc" src="/static/images/personal/arc.png"></image>
         <view class="nav-section">
             <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
-                <text class="iconfont icon-facebook"></text>
+                <text class="iconfont icon-xiaoxi"></text>
                 <text>我的消息</text>
             </view>
             <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
-                <text class="iconfont icon-twitter"></text>
+                <text class="iconfont icon-myRecommender"></text>
                 <text>我的好友</text>
             </view>
             <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
-                <text class="iconfont icon-gongkai"></text>
+                <text class="iconfont icon-gerenzhuye"></text>
                 <text>个人主页</text>
             </view>
             <view class="nav-item" hover-class="common-hover" hover-stay-time="50">
-                <text class="iconfont icon-suoding"></text>
+                <text class="iconfont icon-gexingzhuangban"></text>
                 <text>个性装扮</text>
             </view>
         </view>

@@ -24,14 +24,14 @@
                 <text class="nickName">{{item.data.creator.nickname}}</text>
                 <view class="comments_praised">
                     <text class="item">
-                        <text class="iconfont icon-bianji"></text>
+                        <text class="iconfont icon-buoumaotubiao15"></text>
                         <text class="count">{{item.data.praisedCount}}</text>
                     </text>
                     <text class="item">
-                        <text class="iconfont icon-suoding"></text>
+                        <text class="iconfont icon-pinglun1"></text>
                         <text class="count">{{item.data.commentCount}}</text>
                     </text>
-                    <button open-type="share" class="item btn">
+                    <button open-type="share" data-imageurl="{{item.data.coverUrl}}" class="item btn">
                         <text class="iconfont icon-gengduo"></text>
                     </button>
                 </view>
