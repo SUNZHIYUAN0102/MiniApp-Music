@@ -11,25 +11,27 @@ Page({
         recommendSongs: []
     },
 
-    toSongDetail(e){
+    toSongDetail(e) {
         wx.navigateTo({
-          url: `/pages/songDetail/songDetail?id=${e.target.dataset.song}`,
+            url: `/pages/songDetail/songDetail?id=${e.currentTarget.dataset.song}`,
         })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
+    onLoad: async function (options) {
         this.setData({
             day: new Date().getDate(),
             month: new Date().getMonth() + 1
         })
 
-        request("recommend/songs").then(({data})=>{
-            this.setData({
-                recommendSongs: data.dailySongs
-            })
+        var {
+            data
+        } = await request("recommend/songs")
+
+        this.setData({
+            recommendSongs: data.dailySongs
         })
     },
 
