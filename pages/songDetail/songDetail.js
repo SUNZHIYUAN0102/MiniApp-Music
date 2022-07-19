@@ -12,27 +12,28 @@ Page({
     },
 
     handleMusicPlay() {
-        this.setData({
-            isPlay: !this.data.isPlay
-        })
-
-        this.musicControl(this.data.isPlay)
+        this.musicControl(!this.data.isPlay)
     },
 
     musicControl(isPlay) {
-        var backgroundAudioManager = wx.getBackgroundAudioManager()
         if (isPlay) {
             request("song/url", "GET", {
                 id: this.data.id
             }).then(({
                 data
             }) => {
-                backgroundAudioManager.title = this.data.song.name
-                backgroundAudioManager.src = data[0].url
+                this.backgroundAudioManager.title = this.data.song.name
+                this.backgroundAudioManager.src = data[0].url
             })
         } else {
-            backgroundAudioManager.pause()
+            this.backgroundAudioManager.pause()
         }
+    },
+
+    changePlayState(isPlay){
+        this.setData({
+            isPlay
+        })
     },
 
     /**
@@ -51,6 +52,23 @@ Page({
             })
             wx.setNavigationBarTitle({
                 title: this.data.song.name,
+            })
+        })
+
+        this.backgroundAudioManager = wx.getBackgroundAudioManager()
+        this.backgroundAudioManager.onPlay(() => {
+            this.setData({
+                isPlay: true
+            })
+        })
+        this.backgroundAudioManager.onPause(() => {
+            this.setData({
+                isPlay: false
+            })
+        })
+        this.backgroundAudioManager.onStop(() => {
+            this.setData({
+                isPlay: false
             })
         })
     },
