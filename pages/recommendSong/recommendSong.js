@@ -11,6 +11,12 @@ Page({
         recommendSongs: []
     },
 
+    toSongDetail(e){
+        wx.navigateTo({
+          url: `/pages/songDetail/songDetail?id=${e.target.dataset.song}`,
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -21,7 +27,6 @@ Page({
         })
 
         request("recommend/songs").then(({data})=>{
-            console.log(data);
             this.setData({
                 recommendSongs: data.dailySongs
             })

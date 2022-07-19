@@ -1,24 +1,58 @@
 // pages/songDetail/songDetail.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        isPlay: false
+        isPlay: false,
+        song: '',
+        id: ''
     },
 
-    handleMusicPlay(){
+    handleMusicPlay() {
         this.setData({
             isPlay: !this.data.isPlay
         })
+
+        this.musicControl(this.data.isPlay)
+    },
+
+    musicControl(isPlay) {
+        var backgroundAudioManager = wx.getBackgroundAudioManager()
+        if (isPlay) {
+            request("song/url", "GET", {
+                id: this.data.id
+            }).then(({
+                data
+            }) => {
+                backgroundAudioManager.title = this.data.song.name
+                backgroundAudioManager.src = data[0].url
+            })
+        } else {
+            backgroundAudioManager.pause()
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        this.setData({
+            id: options.id
+        })
 
+        request("song/detail", "GET", {
+            ids: this.data.id
+        }).then(data => {
+            this.setData({
+                song: data.songs[0]
+            })
+            wx.setNavigationBarTitle({
+                title: this.data.song.name,
+            })
+        })
     },
 
     /**
