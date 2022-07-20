@@ -32,7 +32,7 @@ Page({
         }
     },
 
-    changePlayState(isPlay){
+    changePlayState(isPlay) {
         this.setData({
             isPlay
         })
@@ -40,8 +40,14 @@ Page({
         appInstance.globalData.isMusicPlay = isPlay
     },
 
-    handleSwitch(e){
+    handleSwitch(e) {
         let type = e.target.id;
+        PubSub.subscribe('musicId', (msg, musicId) => {
+            console.log(musicId);
+
+            PubSub.unsubscribe('musicId')
+        })
+        PubSub.publish('switchType', type)
     },
 
     /**
@@ -63,7 +69,7 @@ Page({
             })
         })
 
-        if(appInstance.globalData.musicId === this.data.id && appInstance.globalData.isMusicPlay == true){
+        if (appInstance.globalData.musicId === this.data.id && appInstance.globalData.isMusicPlay == true) {
             this.setData({
                 isPlay: true
             })

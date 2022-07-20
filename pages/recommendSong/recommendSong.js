@@ -9,10 +9,14 @@ Page({
     data: {
         day: '',
         month: '',
-        recommendSongs: []
+        recommendSongs: [],
+        index: 0
     },
 
     toSongDetail(e) {
+        this.setData({
+            index: e.currentTarget.dataset.index
+        })
         wx.navigateTo({
             url: `/pages/songDetail/songDetail?id=${e.currentTarget.dataset.song}`,
         })
@@ -33,6 +37,37 @@ Page({
 
         this.setData({
             recommendSongs: data.dailySongs
+        })
+
+        PubSub.subscribe('switchType', (msg, type) => {
+            var {
+                recommendSongs,
+                index
+            } = this.data
+            if (type === 'pre') {
+                if (index > 0) {
+                    this.setData({
+                        index: --index
+                    })
+                } else {
+                    this.setData({
+                        index: recommendSongs.length - 1
+                    })
+                }
+            } else {
+                if (index < recommendSongs.length - 1) {
+                    this.setData({
+                        index: ++index
+                    })
+                } else {
+                    this.setData({
+                        index: 0
+                    })
+                }
+            }
+
+            var musicId = recommendSongs[index].id
+            PubSub.publish('musicId', musicId)
         })
     },
 
