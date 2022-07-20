@@ -10,6 +10,17 @@
         <image class="musicImg {{isPlay?'discAnimation':''}}" src="{{song.al.picUrl}}"></image>
     </view>
 
+    <view class="progressControl">
+        <text>00:00</text>
+        <view class="barControl">
+            <view class="audio-currentTime-Bar"></view>
+            <view class="audio-circle">
+            
+            </view>
+        </view>
+        <text>03:00</text>
+    </view>
+
     <view class="musicControl">
         <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle"></text>
         <text class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></text>

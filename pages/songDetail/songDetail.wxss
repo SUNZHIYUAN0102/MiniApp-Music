@@ -1,22 +1,22 @@
 /* pages/songDetail/songDetail.wxss */
-page{
+page {
     background-color: #507aa8;
 }
 
-.songDetailContainer{
+.songDetailContainer {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.author{
+.author {
     color: white;
     margin: 20rpx 0;
     font-size: 32rpx;
 }
 
-.circle{
+.circle {
     width: 60rpx;
     height: 60rpx;
     border-radius: 50%;
@@ -26,7 +26,7 @@ page{
     position: relative;
 }
 
-.needle{
+.needle {
     position: relative;
     left: 60rpx;
     top: -40rpx;
@@ -38,38 +38,39 @@ page{
     transition: transform .5s linear;
 }
 
-.needleRotate{
+.needleRotate {
     transform: rotate(0);
     transform-origin: 40rpx 0;
     transition: transform .5s linear;
 }
 
-.discContainer{
+.discContainer {
     position: relative;
     top: -170rpx;
     width: 598rpx;
     height: 598rpx;
 }
 
-.disc{
+.disc {
     width: 100%;
     height: 100%;
 }
 
-.discAnimation{
+.discAnimation {
     animation: discRotate 5s linear .5s infinite;
 }
 
-@keyframes discRotate{
-    from{
+@keyframes discRotate {
+    from {
         transform: rotate(0);
     }
-    to{
+
+    to {
         transform: rotate(360deg);
     }
 }
 
-.musicImg{
+.musicImg {
     width: 370rpx;
     height: 370rpx;
     border-radius: 50%;
@@ -80,7 +81,7 @@ page{
     margin-top: -185rpx;
 }
 
-.musicControl{
+.musicControl {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -91,11 +92,49 @@ page{
     height: 120rpx;
 }
 
-.musicControl text{
+.musicControl text {
     color: white;
     font-size: 50rpx;
 }
 
-.musicControl text:nth-child(3){
+.musicControl text:nth-child(3) {
     font-size: 80rpx;
+}
+
+.progressControl {
+    width: 680rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    position: absolute;
+    bottom: 200rpx;
+    color: #8faac8;
+}
+
+.barControl {
+    width: 450rpx;
+    height: 4rpx;
+    background-color: #8faac8;
+    margin: auto;
+    position: relative;
+}
+
+.audio-currentTime-Bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100rpx;
+    z-index: 1;
+    height: 4rpx;
+    background-color: #55e5ff;
+}
+
+.audio-circle{
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background-color: #55e5ff;
+    position: absolute;
+    right: -12rpx;
+    top: -4rpx;
 }
