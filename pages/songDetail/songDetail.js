@@ -23,14 +23,18 @@ Page({
 
     musicControl(isPlay) {
         if (isPlay) {
-            request("song/url", "GET", {
-                id: this.data.id
-            }).then(({
-                data
-            }) => {
-                this.backgroundAudioManager.title = this.data.song.name
-                this.backgroundAudioManager.src = data[0].url
-            })
+            if (this.data.id == appInstance.globalData.musicId) {
+                this.backgroundAudioManager.play()
+            } else {
+                request("song/url", "GET", {
+                    id: this.data.id
+                }).then(({
+                    data
+                }) => {
+                    this.backgroundAudioManager.title = this.data.song.name
+                    this.backgroundAudioManager.src = data[0].url
+                })
+            }
         } else {
             this.backgroundAudioManager.pause()
         }
@@ -105,12 +109,14 @@ Page({
         this.backgroundAudioManager.onStop(() => {
             this.changePlayState(false)
         })
-        this.backgroundAudioManager.onTimeUpdate(()=>{
-            let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss')
-            this.setData({
-                currentTime,
-                currentWidth: this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 100
-            })
+        this.backgroundAudioManager.onTimeUpdate(() => {
+            if(this.data.id === appInstance.globalData.musicId){
+                let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss')
+                this.setData({
+                    currentTime,
+                    currentWidth: this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 100
+                })
+            }
         })
     },
 
