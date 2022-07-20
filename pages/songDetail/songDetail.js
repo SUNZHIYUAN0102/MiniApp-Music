@@ -1,6 +1,7 @@
 // pages/songDetail/songDetail.js
 import request from '../../utils/request'
 const appInstance = getApp()
+import PubSub from 'pubsub-js'
 Page({
 
     /**
@@ -37,6 +38,10 @@ Page({
         })
 
         appInstance.globalData.isMusicPlay = isPlay
+    },
+
+    handleSwitch(e){
+        let type = e.target.id;
     },
 
     /**

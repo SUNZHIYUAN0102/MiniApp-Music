@@ -1,5 +1,6 @@
 // pages/recommendSong/recommendSong.js
 import request from "../../utils/request"
+import PubSub from 'pubsub-js'
 Page({
 
     /**
