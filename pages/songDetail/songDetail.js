@@ -42,8 +42,21 @@ Page({
 
     handleSwitch(e) {
         let type = e.target.id;
+        this.backgroundAudioManager.pause();
         PubSub.subscribe('musicId', (msg, musicId) => {
-            console.log(musicId);
+            request("song/detail", "GET", {
+                ids: musicId
+            }).then(data => {
+                this.setData({
+                    song: data.songs[0],
+                    id: musicId
+                })
+                wx.setNavigationBarTitle({
+                    title: this.data.song.name,
+                })
+
+                this.musicControl(true)
+            })
 
             PubSub.unsubscribe('musicId')
         })
