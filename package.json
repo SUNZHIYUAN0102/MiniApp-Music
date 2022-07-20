@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/SUNZHIYUAN0102/MiniApp-Music#readme",
   "dependencies": {
+    "moment": "^2.29.4",
     "pubsub-js": "^1.9.4"
   }
 }

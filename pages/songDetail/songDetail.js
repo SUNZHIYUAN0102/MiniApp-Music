@@ -2,6 +2,7 @@
 import request from '../../utils/request'
 const appInstance = getApp()
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 Page({
 
     /**
@@ -10,7 +11,10 @@ Page({
     data: {
         isPlay: false,
         song: '',
-        id: ''
+        id: '',
+        currentTime: '00:00',
+        durationTime: '00:00',
+        currentWidth: 0
     },
 
     handleMusicPlay() {
@@ -47,17 +51,17 @@ Page({
             request("song/detail", "GET", {
                 ids: musicId
             }).then(data => {
+                let durationTime = moment(data.songs[0].dt).format('mm:ss')
                 this.setData({
                     song: data.songs[0],
-                    id: musicId
+                    id: musicId,
+                    durationTime: durationTime
                 })
                 wx.setNavigationBarTitle({
                     title: this.data.song.name,
                 })
-
                 this.musicControl(true)
             })
-
             PubSub.unsubscribe('musicId')
         })
         PubSub.publish('switchType', type)
@@ -74,8 +78,10 @@ Page({
         request("song/detail", "GET", {
             ids: this.data.id
         }).then(data => {
+            let durationTime = moment(data.songs[0].dt).format('mm:ss')
             this.setData({
-                song: data.songs[0]
+                song: data.songs[0],
+                durationTime: durationTime
             })
             wx.setNavigationBarTitle({
                 title: this.data.song.name,
@@ -98,6 +104,13 @@ Page({
         })
         this.backgroundAudioManager.onStop(() => {
             this.changePlayState(false)
+        })
+        this.backgroundAudioManager.onTimeUpdate(()=>{
+            let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss')
+            this.setData({
+                currentTime,
+                currentWidth: this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 100
+            })
         })
     },
 

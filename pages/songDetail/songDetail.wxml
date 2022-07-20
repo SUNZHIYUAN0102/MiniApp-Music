@@ -11,14 +11,13 @@
     </view>
 
     <view class="progressControl">
-        <text>00:00</text>
+        <text>{{currentTime}}</text>
         <view class="barControl">
-            <view class="audio-currentTime-Bar"></view>
-            <view class="audio-circle">
-            
+            <view style="width: {{currentWidth + '%'}};" class="audio-currentTime-Bar">
+                <view class="audio-circle"></view>
             </view>
         </view>
-        <text>03:00</text>
+        <text>{{durationTime}}</text>
     </view>
 
     <view class="musicControl">
@@ -29,3 +28,18 @@
         <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
     </view>
 </view>
+
+<!-- <wxs module="m1">
+    module.exports.transfer = function (duration) {
+        var milliseconds = parseInt((duration % 1000))
+            , seconds = parseInt((duration / 1000) % 60)
+            , minutes = parseInt((duration / (1000 * 60)) % 60)
+            , hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+        return  minutes + ":" + seconds;
+    }
+</wxs> -->
