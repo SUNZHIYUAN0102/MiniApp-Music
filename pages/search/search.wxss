@@ -54,3 +54,9 @@
 .order{
     margin: 0 10rpx;
 }
+
+.iconImage{
+    width: 35rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
+}

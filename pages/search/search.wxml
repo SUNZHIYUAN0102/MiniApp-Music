@@ -3,7 +3,7 @@
     <view class="header">
         <view class="searchInput">
             <text class="iconfont icon-search1"></text>
-            <input type="text" placeholder="搜索歌曲" />
+            <input type="text" placeholder="{{placeholderContent}}" />
         </view>
         <view class="cancel">
             取消
@@ -13,38 +13,10 @@
     <view class="hotContainer">
         <view class="title">热搜榜</view>
         <view class="hotList">
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
-            </view>
-            <view class="hotItem">
-                <text class="order">1</text>
-                <text>Meowww</text>
+            <view wx:for="{{hotsList}}" wx:key="order" class="hotItem">
+                <text class="order">{{item.order}}</text>
+                <text>{{item.searchWord}}</text>
+                <image class="iconImage" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>
             </view>
         </view>
     </view>

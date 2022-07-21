@@ -1,18 +1,37 @@
 // pages/search/search.js
+import request from '../../utils/request'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        placeholderContent: '',
+        hotsList: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        request('search/default').then(({
+            data
+        }) => {
+            this.setData({
+                placeholderContent: data.showKeyword
+            })
+        })
 
+
+        request('search/hot/detail').then(({data})=>{
+            data.forEach((item,index)=>{
+                item.order = ++index
+            })
+
+            this.setData({
+                hotsList: data
+            })
+        })
     },
 
     /**
