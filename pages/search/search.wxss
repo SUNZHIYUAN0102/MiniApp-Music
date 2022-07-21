@@ -1,62 +1,84 @@
 /* pages/search/search.wxss */
-.searchContainer{
+.searchContainer {
     padding: 0 20rpx;
 }
-.header{
+
+.header {
     display: flex;
     height: 60rpx;
     align-items: center;
     line-height: 60rpx;
 }
 
-.searchInput{
+.searchInput {
     flex: 1;
     border-radius: 30rpx;
     background-color: rgba(237, 237, 237, 0.3);
     position: relative;
 }
 
-.searchInput text{
+.searchInput text {
     position: absolute;
     left: 20rpx;
 }
 
-.searchInput input{
+.searchInput input {
     margin-left: 60rpx;
     height: 60rpx;
 }
 
-.cancel{
+.cancel {
     width: 100rpx;
     text-align: center;
 }
 
-.hotContainer .title{
+.hotContainer .title {
     font-size: 28rpx;
     height: 80rpx;
     line-height: 80rpx;
     border-bottom: 1rpx solid #eee;
 }
 
-.hotList{
+.hotList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.hotList .hotItem{
+.hotList .hotItem {
     width: 50%;
     height: 80rpx;
     line-height: 80rpx;
     font-size: 26rpx;
 }
 
-.order{
+.order {
     margin: 0 10rpx;
 }
 
-.iconImage{
+.iconImage {
     width: 35rpx;
     height: 20rpx;
     margin-left: 10rpx;
+}
+
+.searchContent {
+    color: #d43c33;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    border-bottom: 1rpx solid #d43c33;
+}
+
+.searchItem {
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid #eee;
+    font-size: 26rpx;
 }

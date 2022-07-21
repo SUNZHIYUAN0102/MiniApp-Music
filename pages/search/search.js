@@ -7,7 +7,36 @@ Page({
      */
     data: {
         placeholderContent: '',
-        hotsList: []
+        hotsList: [],
+        keywords: '',
+        searchList: [],
+        isSend: false
+    },
+
+    handleInputChange() {
+        if (this.data.keywords) {
+            if (this.data.isSend) return
+            setTimeout(() => {
+                this.setData({
+                    isSend: true
+                })
+                request('search', 'GET', {
+                    keywords: this.data.keywords.trim(),
+                    limit: 10
+                }).then(({
+                    result
+                }) => {
+                    this.setData({
+                        searchList: result.songs,
+                        isSend: false
+                    })
+                })
+            }, 300);
+        } else {
+            this.setData({
+                searchList: []
+            })
+        }
     },
 
     /**
@@ -23,8 +52,10 @@ Page({
         })
 
 
-        request('search/hot/detail').then(({data})=>{
-            data.forEach((item,index)=>{
+        request('search/hot/detail').then(({
+            data
+        }) => {
+            data.forEach((item, index) => {
                 item.order = ++index
             })
 
