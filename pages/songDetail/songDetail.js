@@ -49,7 +49,7 @@ Page({
     },
 
     handleSwitch(e) {
-        let type = e.target.id;
+        let type = e ? 'e.target.id' : "next";
         this.backgroundAudioManager.pause();
         PubSub.subscribe('musicId', (msg, musicId) => {
             request("song/detail", "GET", {
@@ -110,12 +110,16 @@ Page({
             this.changePlayState(false)
         })
         this.backgroundAudioManager.onTimeUpdate(() => {
-            if(this.data.id === appInstance.globalData.musicId){
-                let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss')
-                this.setData({
-                    currentTime,
-                    currentWidth: this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 100
-                })
+            if (this.data.id === appInstance.globalData.musicId) {
+                if (this.backgroundAudioManager.currentTime === this.backgroundAudioManager.duration) {
+                    this.handleSwitch()
+                } else {
+                    let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss')
+                    this.setData({
+                        currentTime,
+                        currentWidth: this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 100
+                    })
+                }
             }
         })
     },

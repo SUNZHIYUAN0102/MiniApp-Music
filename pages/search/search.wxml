@@ -1,0 +1,51 @@
+<!--pages/search/search.wxml-->
+<view class="searchContainer">
+    <view class="header">
+        <view class="searchInput">
+            <text class="iconfont icon-search1"></text>
+            <input type="text" placeholder="搜索歌曲" />
+        </view>
+        <view class="cancel">
+            取消
+        </view>
+    </view>
+
+    <view class="hotContainer">
+        <view class="title">热搜榜</view>
+        <view class="hotList">
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+            <view class="hotItem">
+                <text class="order">1</text>
+                <text>Meowww</text>
+            </view>
+        </view>
+    </view>
+</view>
