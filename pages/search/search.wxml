@@ -4,6 +4,7 @@
         <view class="searchInput">
             <text class="iconfont icon-search1"></text>
             <input bindinput="handleInputChange" model:value="{{keywords}}" type="text" placeholder="{{placeholderContent}}" />
+            <text class="clear" bindtap="clearKeywords">×</text>
         </view>
         <view class="cancel">
             取消
@@ -20,14 +21,23 @@
         </view>
     </view>
 
-    <view wx:if="{{searchList.length == 0}}" class="hotContainer">
-        <view class="title">热搜榜</view>
-        <view class="hotList">
-            <view wx:for="{{hotsList}}" wx:key="order" class="hotItem">
-                <text class="order">{{item.order}}</text>
-                <text>{{item.searchWord}}</text>
-                <image class="iconImage" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>
+    <block wx:else>
+        <view class="history">
+            <view class="title">历史</view>
+            <view wx:for="{{historyList}}" wx:key="item" class="historyItem">
+                {{item}}
+            </view>
+            <text class="iconfont icon-shanchu delete" ></text>
+        </view>
+        <view wx:if="else" class="hotContainer">
+            <view class="title">热搜榜</view>
+            <view class="hotList">
+                <view wx:for="{{hotsList}}" wx:key="order" class="hotItem">
+                    <text class="order">{{item.order}}</text>
+                    <text>{{item.searchWord}}</text>
+                    <image class="iconImage" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>
+                </view>
             </view>
         </view>
-    </view>
+    </block>
 </view>

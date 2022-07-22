@@ -10,7 +10,21 @@ Page({
         hotsList: [],
         keywords: '',
         searchList: [],
-        isSend: false
+        isSend: false,
+        historyList: []
+    },
+
+
+    unique(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    arr.splice(j, 1);
+                    j--;
+                }
+            }
+        }
+        return arr;
     },
 
     handleInputChange() {
@@ -26,9 +40,15 @@ Page({
                 }).then(({
                     result
                 }) => {
+                    let {
+                        historyList
+                    } = this.data
+                    historyList.unshift(this.data.keywords.trim())
+                    wx.setStorageSync('searchHistory', this.unique(historyList))
                     this.setData({
                         searchList: result.songs,
-                        isSend: false
+                        isSend: false,
+                        historyList: this.unique(historyList)
                     })
                 })
             }, 300);
@@ -39,10 +59,22 @@ Page({
         }
     },
 
+    clearKeywords() {
+        this.setData({
+            keywords: ''
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        let historyList = wx.getStorageSync('searchHistory')
+        if (historyList) {
+            this.setData({
+                historyList
+            })
+        }
         request('search/default').then(({
             data
         }) => {
