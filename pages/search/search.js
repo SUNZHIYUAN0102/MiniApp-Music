@@ -65,6 +65,22 @@ Page({
         })
     },
 
+    clearSearchHistory() {
+        wx.showModal({
+            title: '确认框',
+            content: '你是否确认删除当前搜索历史记录',
+            cancelColor: 'cancelColor',
+            success: (res) => {
+                if (res.confirm) {
+                    this.setData({
+                        historyList: []
+                    })
+                    wx.removeStorageSync('searchHistory')
+                }
+            }
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

@@ -27,7 +27,7 @@
             <view wx:for="{{historyList}}" wx:key="item" class="historyItem">
                 {{item}}
             </view>
-            <text class="iconfont icon-shanchu delete" ></text>
+            <text hidden="{{historyList.length==0}}" bindtap="clearSearchHistory" class="iconfont icon-shanchu delete"></text>
         </view>
         <view wx:if="else" class="hotContainer">
             <view class="title">热搜榜</view>
