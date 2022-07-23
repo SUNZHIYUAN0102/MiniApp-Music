@@ -1,11 +1,12 @@
 {
     "pages": [
-        "pages/search/search",
+        "pages/other/other",
+        "pages/index/index",
         "pages/recommendSong/recommendSong",
+        "pages/search/search",
         "pages/personal/personal",
         "pages/songDetail/songDetail",
         "pages/video/video",
-        "pages/index/index",
         "pages/login/login"
     ],
     "window": {

@@ -7,7 +7,7 @@
     </swiper>
 
     <view class="navContainer">
-        <view class="navItem">
+        <view class="navItem" bindtap="goRecommendSong">
             <text class="iconfont .icon-meirituijian"></text>
             <text>每日推荐</text>
         </view>
