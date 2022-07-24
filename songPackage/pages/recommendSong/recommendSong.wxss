@@ -1,4 +1,6 @@
 /* pages/recommendSong/recommendSong.wxss */
+@import "/songPackage/static/iconfont/inconfont.wxss";
+
 .recommendSongContainer .header {
     width: 100%;
     height: 300rpx;

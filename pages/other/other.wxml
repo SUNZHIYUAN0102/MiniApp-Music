@@ -1,8 +1,0 @@
-<!--pages/other/other.wxml-->
-<import src="/templates/myTemplate/myTemplate"></import>
-<view class="otherContainer">
-    <view>
-        测试模板
-        <template is="myTmp" data="{{...user}}"></template>
-    </view>
-</view>

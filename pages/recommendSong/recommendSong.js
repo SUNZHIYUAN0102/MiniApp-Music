@@ -1,74 +1,18 @@
 // pages/recommendSong/recommendSong.js
-import request from "../../utils/request"
-import PubSub from 'pubsub-js'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        day: '',
-        month: '',
-        recommendSongs: [],
-        index: 0
-    },
 
-    toSongDetail(e) {
-        this.setData({
-            index: e.currentTarget.dataset.index
-        })
-        wx.navigateTo({
-            url: `/pages/songDetail/songDetail?id=${e.currentTarget.dataset.song}`,
-        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: async function (options) {
-        this.setData({
-            day: new Date().getDate(),
-            month: new Date().getMonth() + 1
-        })
+    onLoad(options) {
 
-        var {
-            data
-        } = await request("recommend/songs")
-
-        this.setData({
-            recommendSongs: data.dailySongs
-        })
-
-        PubSub.subscribe('switchType', (msg, type) => {
-            var {
-                recommendSongs,
-                index
-            } = this.data
-            if (type === 'pre') {
-                if (index > 0) {
-                    this.setData({
-                        index: --index
-                    })
-                } else {
-                    this.setData({
-                        index: recommendSongs.length - 1
-                    })
-                }
-            } else {
-                if (index < recommendSongs.length - 1) {
-                    this.setData({
-                        index: ++index
-                    })
-                } else {
-                    this.setData({
-                        index: 0
-                    })
-                }
-            }
-
-            var musicId = recommendSongs[index].id
-            PubSub.publish('musicId', musicId)
-        })
     },
 
     /**

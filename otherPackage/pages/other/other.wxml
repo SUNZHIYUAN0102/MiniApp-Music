@@ -1,0 +1,13 @@
+<!--pages/other/other.wxml-->
+<import src="/templates/myTemplate/myTemplate"></import>
+<view class="otherContainer">
+    <view class="subject">
+        测试模板
+    </view>
+
+    <template is="myTmp" data="{{...user}}"></template>
+
+    <view class="subject">获取openId</view>
+    <button bindtap="getOpenId">获取OpenId</button>
+</view>
+

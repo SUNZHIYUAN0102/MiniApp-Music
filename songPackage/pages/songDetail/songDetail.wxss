@@ -1,4 +1,6 @@
 /* pages/songDetail/songDetail.wxss */
+@import "/songPackage/static/iconfont/inconfont.wxss";
+
 page {
     background-color: #507aa8;
 }

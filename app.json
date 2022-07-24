@@ -1,11 +1,8 @@
 {
     "pages": [
-        "pages/other/other",
         "pages/index/index",
-        "pages/recommendSong/recommendSong",
         "pages/search/search",
         "pages/personal/personal",
-        "pages/songDetail/songDetail",
         "pages/video/video",
         "pages/login/login"
     ],
@@ -15,11 +12,29 @@
         "navigationBarTitleText": "喵喵音乐",
         "navigationBarTextStyle": "white"
     },
+    "subPackages": [{
+        "root": "songPackage",
+        "pages": [
+            "pages/recommendSong/recommendSong",
+            "pages/songDetail/songDetail"
+        ],
+        "independent": true
+    }, {
+        "root": "otherPackage",
+        "pages": [
+            "pages/other/other"
+        ]
+    }],
+    "preloadRule": {
+        "pages/index/index": {
+            "packages": ["songPackage"],
+            "network": "all"
+        }
+    },
     "tabBar": {
         "color": "#333",
         "selectedColor": "#d43c33",
-        "list": [
-            {
+        "list": [{
                 "pagePath": "pages/index/index",
                 "text": "首页",
                 "iconPath": "/static/images/tabs/bender-48.png",

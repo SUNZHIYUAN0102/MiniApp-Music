@@ -1,14 +1,23 @@
 // pages/other/other.js
+//8ef3a7019d87a2d512f397917308b2a4
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        user:{
+        user: {
             username: 'littleyuanyuan',
             age: 23
         }
+    },
+
+    getOpenId() {
+        wx.login({
+            success: (res) => {
+                let code = res.code
+            }
+        })
     },
 
     /**

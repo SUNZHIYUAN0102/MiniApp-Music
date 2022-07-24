@@ -1,0 +1,11 @@
+/* pages/other/other.wxss */
+@import "/templates/myTemplate/myTemplate.wxss";
+.otherContainer{
+    padding: 20rpx;
+}
+.subject {
+    font-size: 40rpx;
+    font-weight: bold;
+    color: pink;
+    margin: 20rpx 0;
+}
